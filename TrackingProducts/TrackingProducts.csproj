@@ -12,6 +12,23 @@
     <AssemblyName>TrackingProducts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\AEGAR\Desktop\App\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,13 +49,45 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>main.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3E39EA0F791C3B2B4523FB99F401EAD89481DF06</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TrackingProducts_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TrackingProducts.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v17.1" />
+    <Reference Include="DevExpress.CodeParser.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v17.1" />
+    <Reference Include="DevExpress.DataAccess.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v17.1.Core, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v17.1" />
     <Reference Include="DevExpress.Sparkline.v17.1.Core" />
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v17.1" />
     <Reference Include="DevExpress.Printing.v17.1.Core" />
+    <Reference Include="DevExpress.XtraGrid.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v17.1, Version=17.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,17 +100,119 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="DAL.cs" />
+    <Compile Include="Form_About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Form_About.Designer.cs">
+      <DependentUpon>Form_About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_AddColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddColor.Designer.cs">
+      <DependentUpon>Form_AddColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_AddSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddSize.Designer.cs">
+      <DependentUpon>Form_AddSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_AddBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddBranch.Designer.cs">
+      <DependentUpon>Form_AddBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CurrentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CurrentList.Designer.cs">
+      <DependentUpon>Form_CurrentList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Current.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Current.Designer.cs">
+      <DependentUpon>Form_Current.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DocumentGuide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DocumentGuide.Designer.cs">
+      <DependentUpon>Form_DocumentGuide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ReportCurrentTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ReportCurrentTransaction.Designer.cs">
+      <DependentUpon>Form_ReportCurrentTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Sales.Designer.cs">
+      <DependentUpon>Form_Sales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Stocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Stocks.Designer.cs">
+      <DependentUpon>Form_Stocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ReportStockTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ReportStockTransaction.Designer.cs">
+      <DependentUpon>Form_ReportStockTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralClasses.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Form_About.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_AddBranch.resx">
+      <DependentUpon>Form_AddBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_AddColor.resx">
+      <DependentUpon>Form_AddColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_AddSize.resx">
+      <DependentUpon>Form_AddSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CurrentList.resx">
+      <DependentUpon>Form_CurrentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Current.resx">
+      <DependentUpon>Form_Current.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DocumentGuide.resx">
+      <DependentUpon>Form_DocumentGuide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ReportCurrentTransaction.resx">
+      <DependentUpon>Form_ReportCurrentTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Sales.resx">
+      <DependentUpon>Form_Sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Stocks.resx">
+      <DependentUpon>Form_Stocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ReportStockTransaction.resx">
+      <DependentUpon>Form_ReportStockTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,6 +231,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TrackingProducts_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

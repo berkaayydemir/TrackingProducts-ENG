@@ -379,6 +379,27 @@ namespace TrackingProducts
             _authorized = tb_authorized.Text;
         }
 
+        private void sendAsExcelForCurrentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+
+            save.FileName = "Kunden Transaktion Reporter(" + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + ")";
+            save.Filter = "Excel-Arbeitsmappe |*.xls";
+            save.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (save.ShowDialog() == DialogResult.OK) //Pencerede kayıt düğmesine basıldıysa
+            {
+                grid_current.ExportToXls(save.FileName);
+            }
+
+            if (MessageBox.Show("Öffnen Sie die exportierte Datei?", "Excel-Datei", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Kaydedilen Excel Dosyasını açar.
+                System.Diagnostics.Process.Start(save.FileName);
+            }
+        }
+
         private void tb_eMail_Leave(object sender, EventArgs e)
         {
             _email = tb_eMail.Text;

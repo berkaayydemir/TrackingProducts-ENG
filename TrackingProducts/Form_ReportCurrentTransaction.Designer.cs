@@ -78,7 +78,7 @@
             this.btn_Report.Name = "btn_Report";
             this.btn_Report.Size = new System.Drawing.Size(110, 42);
             this.btn_Report.TabIndex = 3;
-            this.btn_Report.Text = "Bericht zeigen";
+            this.btn_Report.Text = "Show report";
             this.btn_Report.Click += new System.EventHandler(this.btn_Report_Click);
             // 
             // labelControl1
@@ -87,9 +87,9 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(75, 6);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(40, 16);
+            this.labelControl1.Size = new System.Drawing.Size(50, 16);
             this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "Kunde";
+            this.labelControl1.Text = "Current";
             // 
             // labelControl2
             // 
@@ -97,9 +97,9 @@
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(209, 6);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(91, 16);
+            this.labelControl2.Size = new System.Drawing.Size(102, 16);
             this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "Abreisedatum";
+            this.labelControl2.Text = "Departure Date";
             // 
             // date_2
             // 
@@ -143,8 +143,8 @@
             // sendExcelToolStripMenuItem
             // 
             this.sendExcelToolStripMenuItem.Name = "sendExcelToolStripMenuItem";
-            this.sendExcelToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.sendExcelToolStripMenuItem.Text = "Send Excel";
+            this.sendExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendExcelToolStripMenuItem.Text = "Send As Excel";
             this.sendExcelToolStripMenuItem.Click += new System.EventHandler(this.sendExcelToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
@@ -152,7 +152,7 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sendExcelToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(130, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
             // gridColumn9
             // 
@@ -166,7 +166,7 @@
             // 
             // gridColumn8
             // 
-            this.gridColumn8.Caption = "Forderungen";
+            this.gridColumn8.Caption = "Receivable";
             this.gridColumn8.DisplayFormat.FormatString = "#,##0.00";
             this.gridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn8.FieldName = "CARI_ALCK";
@@ -176,7 +176,7 @@
             // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "Shulden";
+            this.gridColumn7.Caption = "Debt";
             this.gridColumn7.DisplayFormat.FormatString = "#,##0.00";
             this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn7.FieldName = "CARI_BORC";
@@ -205,9 +205,9 @@
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Location = new System.Drawing.Point(370, 6);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(90, 16);
+            this.labelControl3.Size = new System.Drawing.Size(74, 16);
             this.labelControl3.TabIndex = 7;
-            this.labelControl3.Text = "Verfallsdatum";
+            this.labelControl3.Text = "Expiry Date";
             // 
             // gridColumn6
             // 
@@ -232,7 +232,7 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Fälligkeitsdatum";
+            this.gridColumn3.Caption = "Due Date";
             this.gridColumn3.FieldName = "VADE_TARIHI";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -240,7 +240,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Datum";
+            this.gridColumn2.Caption = "Date";
             this.gridColumn2.FieldName = "HARK_TARH";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -248,7 +248,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Kunde";
+            this.gridColumn1.Caption = "Current";
             this.gridColumn1.DisplayFormat.FormatString = "#,##0.00";
             this.gridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn1.FieldName = "CARI_KOD";
@@ -332,7 +332,7 @@
             // 
             // gridColumn56
             // 
-            this.gridColumn56.Caption = "Kundenname";
+            this.gridColumn56.Caption = "Current Name";
             this.gridColumn56.FieldName = "CARI_ISIM";
             this.gridColumn56.Name = "gridColumn56";
             this.gridColumn56.Visible = true;
@@ -341,7 +341,7 @@
             // 
             // gridColumn57
             // 
-            this.gridColumn57.Caption = "Kundencode";
+            this.gridColumn57.Caption = "Current Code";
             this.gridColumn57.FieldName = "CARI_KOD";
             this.gridColumn57.Name = "gridColumn57";
             this.gridColumn57.Visible = true;
@@ -358,7 +358,7 @@
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_ReportCurrentTransaction";
-            this.Text = "Kunden Transaktions Bericht";
+            this.Text = "Current Transaction Report";
             this.Load += new System.EventHandler(this.Form_CurrentTransactionReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.date_2.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.date_2.Properties)).EndInit();

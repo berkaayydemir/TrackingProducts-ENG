@@ -80,7 +80,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Rang";
+            this.gridColumn1.Caption = "Order";
             this.gridColumn1.FieldName = "ID";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -89,7 +89,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Größennummer";
+            this.gridColumn2.Caption = "Size Number";
             this.gridColumn2.FieldName = "SIZE";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -148,9 +148,9 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(6, 17);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(96, 18);
+            this.labelControl1.Size = new System.Drawing.Size(78, 18);
             this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "Größennummer";
+            this.labelControl1.Text = "Size Number";
             // 
             // tb_sizeNumber
             // 
@@ -172,7 +172,7 @@
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_AddSize";
-            this.Text = "Größe";
+            this.Text = "Size";
             this.Load += new System.EventHandler(this.Form_AddSize_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);

@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraPivotGrid.PivotGridFormatRule pivotGridFormatRule1 = new DevExpress.XtraPivotGrid.PivotGridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleAboveBelowAverage formatConditionRuleAboveBelowAverage1 = new DevExpress.XtraEditors.FormatConditionRuleAboveBelowAverage();
             DevExpress.XtraPivotGrid.FormatRuleTotalTypeSettings formatRuleTotalTypeSettings1 = new DevExpress.XtraPivotGrid.FormatRuleTotalTypeSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_ReportStockTransaction));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pGrid_Report = new DevExpress.XtraPivotGrid.PivotGridControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sendenSieExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pivotGridField1 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField6 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.pivotGridField2 = new DevExpress.XtraPivotGrid.PivotGridField();
@@ -43,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pGrid_Report)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -56,6 +60,7 @@
             // 
             // pGrid_Report
             // 
+            this.pGrid_Report.ContextMenuStrip = this.contextMenuStrip1;
             this.pGrid_Report.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pGrid_Report.Fields.AddRange(new DevExpress.XtraPivotGrid.PivotGridField[] {
             this.pivotGridField1,
@@ -74,11 +79,26 @@
             this.pGrid_Report.Size = new System.Drawing.Size(1246, 818);
             this.pGrid_Report.TabIndex = 0;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendenSieExcelToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // sendenSieExcelToolStripMenuItem
+            // 
+            this.sendenSieExcelToolStripMenuItem.Name = "sendenSieExcelToolStripMenuItem";
+            this.sendenSieExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendenSieExcelToolStripMenuItem.Text = "Send As Excel";
+            this.sendenSieExcelToolStripMenuItem.Click += new System.EventHandler(this.sendenSieExcelToolStripMenuItem_Click);
+            // 
             // pivotGridField1
             // 
             this.pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField1.AreaIndex = 0;
-            this.pivotGridField1.Caption = "Lagercode";
+            this.pivotGridField1.Caption = "Stock Code";
             this.pivotGridField1.FieldName = "STOK_KODU";
             this.pivotGridField1.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.pivotGridField1.Name = "pivotGridField1";
@@ -87,7 +107,7 @@
             // 
             this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
             this.pivotGridField6.AreaIndex = 1;
-            this.pivotGridField6.Caption = "Branchencode";
+            this.pivotGridField6.Caption = "Branch Code";
             this.pivotGridField6.FieldName = "SUBE_KOD";
             this.pivotGridField6.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.pivotGridField6.Name = "pivotGridField6";
@@ -96,7 +116,7 @@
             // 
             this.pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
             this.pivotGridField2.AreaIndex = 0;
-            this.pivotGridField2.Caption = "Branchenname";
+            this.pivotGridField2.Caption = "Branch Name";
             this.pivotGridField2.FieldName = "SUBE_AD";
             this.pivotGridField2.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.pivotGridField2.Name = "pivotGridField2";
@@ -105,7 +125,7 @@
             // 
             this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField7.AreaIndex = 1;
-            this.pivotGridField7.Caption = "Farbe";
+            this.pivotGridField7.Caption = "Color";
             this.pivotGridField7.FieldName = "COLOR";
             this.pivotGridField7.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.pivotGridField7.Name = "pivotGridField7";
@@ -114,7 +134,7 @@
             // 
             this.pivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             this.pivotGridField8.AreaIndex = 2;
-            this.pivotGridField8.Caption = "Größe";
+            this.pivotGridField8.Caption = "Size";
             this.pivotGridField8.FieldName = "SIZE";
             this.pivotGridField8.GrandTotalCellFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.pivotGridField8.Name = "pivotGridField8";
@@ -123,7 +143,7 @@
             // 
             this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             this.pivotGridField9.AreaIndex = 0;
-            this.pivotGridField9.Caption = "Menge";
+            this.pivotGridField9.Caption = "Quantity";
             this.pivotGridField9.CellFormat.FormatString = "#,##0.00";
             this.pivotGridField9.CellFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.pivotGridField9.FieldName = "MIKTAR";
@@ -143,12 +163,13 @@
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_ReportStockTransaction";
-            this.Text = "Bestands Detail Bericht";
+            this.Text = "Stock Detail Report";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_StockTransaction_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pGrid_Report)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -163,5 +184,7 @@
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField8;
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField9;
         private DevExpress.XtraPivotGrid.PivotGridField pivotGridField2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem sendenSieExcelToolStripMenuItem;
     }
 }

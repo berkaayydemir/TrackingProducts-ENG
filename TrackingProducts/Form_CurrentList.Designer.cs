@@ -87,7 +87,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Kunden Code";
+            this.gridColumn1.Caption = "Current Code";
             this.gridColumn1.FieldName = "CARI_KOD";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -95,7 +95,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Kunden Name";
+            this.gridColumn2.Caption = "Current Name";
             this.gridColumn2.FieldName = "CARI_ISIM";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -105,11 +105,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(12, 61);
+            this.label2.Location = new System.Drawing.Point(8, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 201;
-            this.label2.Text = "Kunden Name";
+            this.label2.Text = "Current Name";
             // 
             // tb_currentName
             // 
@@ -155,11 +155,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(12, 10);
+            this.label1.Location = new System.Drawing.Point(8, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 199;
-            this.label1.Text = "Kunden Code";
+            this.label1.Text = "Current Code";
             // 
             // Form_CurrentList
             // 
@@ -170,7 +170,7 @@
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_CurrentList";
-            this.Text = "Kundenleitfaden";
+            this.Text = "Current Guide";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_CustomersList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid_currentList)).EndInit();

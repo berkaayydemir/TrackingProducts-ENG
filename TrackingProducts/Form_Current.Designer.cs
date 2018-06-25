@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Current));
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.grid_current = new DevExpress.XtraGrid.GridControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sendExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendAsExcelForCurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,11 +94,10 @@
             this.dt_maturityDatemMOVE = new DevExpress.XtraEditors.DateEdit();
             this.tb_documentNoMOVE = new DevExpress.XtraEditors.TextEdit();
             this.dt_dateMOVE = new DevExpress.XtraEditors.DateEdit();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.sendExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_current)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_caribilgi)).BeginInit();
             this.pnl_caribilgi.SuspendLayout();
@@ -130,7 +132,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_documentNoMOVE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_dateMOVE.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_dateMOVE.Properties)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -143,13 +144,14 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTablontrol1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1304, 823);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1413, 823);
             this.splitContainerControl1.SplitterPosition = 726;
             this.splitContainerControl1.TabIndex = 4;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
             // grid_current
             // 
+            this.grid_current.ContextMenuStrip = this.contextMenuStrip1;
             this.grid_current.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid_current.Location = new System.Drawing.Point(0, 327);
             this.grid_current.MainView = this.gridView1;
@@ -159,6 +161,28 @@
             this.grid_current.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             this.grid_current.DoubleClick += new System.EventHandler(this.grid_current_DoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendExcelToolStripMenuItem,
+            this.sendAsExcelForCurrentToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(273, 70);
+            // 
+            // sendExcelToolStripMenuItem
+            // 
+            this.sendExcelToolStripMenuItem.Name = "sendExcelToolStripMenuItem";
+            this.sendExcelToolStripMenuItem.Size = new System.Drawing.Size(272, 22);
+            this.sendExcelToolStripMenuItem.Text = "Send As Excel for Current Motion";
+            this.sendExcelToolStripMenuItem.Click += new System.EventHandler(this.sendExcelToolStripMenuItem_Click);
+            // 
+            // sendAsExcelForCurrentToolStripMenuItem
+            // 
+            this.sendAsExcelForCurrentToolStripMenuItem.Name = "sendAsExcelForCurrentToolStripMenuItem";
+            this.sendAsExcelForCurrentToolStripMenuItem.Size = new System.Drawing.Size(272, 22);
+            this.sendAsExcelForCurrentToolStripMenuItem.Text = "Send As Excel for Current Information";
+            this.sendAsExcelForCurrentToolStripMenuItem.Click += new System.EventHandler(this.sendAsExcelForCurrentToolStripMenuItem_Click);
             // 
             // gridView1
             // 
@@ -170,7 +194,7 @@
             // 
             // gridColumn8
             // 
-            this.gridColumn8.Caption = "Kunden Code";
+            this.gridColumn8.Caption = "Current Code";
             this.gridColumn8.FieldName = "CARI_KOD";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
@@ -179,7 +203,7 @@
             // 
             // gridColumn9
             // 
-            this.gridColumn9.Caption = "Kunden Name";
+            this.gridColumn9.Caption = "Current Name";
             this.gridColumn9.FieldName = "CARI_ISIM";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
@@ -290,38 +314,46 @@
             // 
             // btn_currentList
             // 
-            this.btn_currentList.Location = new System.Drawing.Point(342, 6);
+            this.btn_currentList.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btn_currentList.Location = new System.Drawing.Point(342, 5);
             this.btn_currentList.Name = "btn_currentList";
-            this.btn_currentList.Size = new System.Drawing.Size(27, 23);
+            this.btn_currentList.Size = new System.Drawing.Size(34, 26);
             this.btn_currentList.TabIndex = 205;
             this.btn_currentList.Text = "...";
             this.btn_currentList.Click += new System.EventHandler(this.btn_currentList_Click);
             // 
             // btn_refresh
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(525, 270);
+            this.btn_refresh.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btn_refresh.Location = new System.Drawing.Point(525, 291);
             this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(75, 23);
+            this.btn_refresh.Size = new System.Drawing.Size(98, 23);
             this.btn_refresh.TabIndex = 18;
-            this.btn_refresh.Text = "Aktualisieren";
+            this.btn_refresh.Text = "Refresh";
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(525, 241);
+            this.btn_delete.Appearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_delete.Appearance.Options.UseBorderColor = true;
+            this.btn_delete.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btn_delete.Location = new System.Drawing.Point(525, 262);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(75, 23);
+            this.btn_delete.Size = new System.Drawing.Size(98, 23);
             this.btn_delete.TabIndex = 17;
-            this.btn_delete.Text = "Löschen";
+            this.btn_delete.Text = "Delete";
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(525, 212);
+            this.btn_save.Appearance.BorderColor = System.Drawing.Color.Black;
+            this.btn_save.Appearance.Options.UseBorderColor = true;
+            this.btn_save.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btn_save.Location = new System.Drawing.Point(525, 233);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(75, 23);
+            this.btn_save.Size = new System.Drawing.Size(98, 23);
             this.btn_save.TabIndex = 16;
-            this.btn_save.Text = "Speichern";
+            this.btn_save.Text = "Save";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // rg_type2
@@ -336,8 +368,8 @@
             this.rg_type2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.rg_type2.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
             new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Institution"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Vermittler"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Andere")});
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Mediator"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Other")});
             this.rg_type2.Size = new System.Drawing.Size(98, 76);
             this.rg_type2.TabIndex = 15;
             this.rg_type2.SelectedIndexChanged += new System.EventHandler(this.rg_type2_SelectedIndexChanged);
@@ -353,9 +385,9 @@
             this.rg_type.Properties.Appearance.Options.UseFont = true;
             this.rg_type.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.rg_type.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Empfänger"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Verkäufer"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Andere")});
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Receiver"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Seller"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Other")});
             this.rg_type.Size = new System.Drawing.Size(98, 76);
             this.rg_type.TabIndex = 14;
             this.rg_type.SelectedIndexChanged += new System.EventHandler(this.rg_type_SelectedIndexChanged);
@@ -377,11 +409,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label9.Location = new System.Drawing.Point(101, 301);
+            this.label9.Location = new System.Drawing.Point(85, 301);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 204;
-            this.label9.Text = "Aussage";
+            this.label9.Text = "Description";
             // 
             // tb_eMail
             // 
@@ -423,11 +455,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(39, 247);
+            this.label5.Location = new System.Drawing.Point(45, 247);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 13);
+            this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 200;
-            this.label5.Text = "Autorisierte Person";
+            this.label5.Text = "Authorized person";
             // 
             // tb_district
             // 
@@ -465,11 +497,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(80, 11);
+            this.label1.Location = new System.Drawing.Point(75, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 197;
-            this.label1.Text = "Kundencode";
+            this.label1.Text = "Current Code";
             // 
             // tb_currentCode
             // 
@@ -489,21 +521,21 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label12.Location = new System.Drawing.Point(51, 193);
+            this.label12.Location = new System.Drawing.Point(57, 193);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 13);
+            this.label12.Size = new System.Drawing.Size(99, 13);
             this.label12.TabIndex = 139;
-            this.label12.Text = "Fax / ID-Nummer";
+            this.label12.Text = "Fax / ID Number";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(75, 37);
+            this.label2.Location = new System.Drawing.Point(71, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 59;
-            this.label2.Text = "Kundenname";
+            this.label2.Text = "Current Name";
             // 
             // label3
             // 
@@ -513,17 +545,17 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 60;
-            this.label3.Text = "Adresse";
+            this.label3.Text = "Address";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(60, 138);
+            this.label4.Location = new System.Drawing.Point(47, 138);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 13);
+            this.label4.Size = new System.Drawing.Size(109, 13);
             this.label4.TabIndex = 61;
-            this.label4.Text = "Provinz / Bezirk";
+            this.label4.Text = "Province / District";
             // 
             // label6
             // 
@@ -539,11 +571,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label7.Location = new System.Drawing.Point(1, 220);
+            this.label7.Location = new System.Drawing.Point(15, 220);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(155, 13);
+            this.label7.Size = new System.Drawing.Size(141, 13);
             this.label7.TabIndex = 64;
-            this.label7.Text = " Steuerbehörde / nummer";
+            this.label7.Text = "Tax Authority / Number";
             // 
             // tb_address
             // 
@@ -609,7 +641,7 @@
             this.xtraTablontrol1.Location = new System.Drawing.Point(0, 0);
             this.xtraTablontrol1.Name = "xtraTablontrol1";
             this.xtraTablontrol1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTablontrol1.Size = new System.Drawing.Size(573, 823);
+            this.xtraTablontrol1.Size = new System.Drawing.Size(682, 823);
             this.xtraTablontrol1.TabIndex = 1;
             this.xtraTablontrol1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1});
@@ -619,16 +651,17 @@
             this.xtraTabPage1.Controls.Add(this.grid_currentMovement);
             this.xtraTabPage1.Controls.Add(this.panelControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(567, 795);
-            this.xtraTabPage1.Text = "Kunden Transaktion";
+            this.xtraTabPage1.Size = new System.Drawing.Size(676, 795);
+            this.xtraTabPage1.Text = "Current Movements ";
             // 
             // grid_currentMovement
             // 
+            this.grid_currentMovement.ContextMenuStrip = this.contextMenuStrip1;
             this.grid_currentMovement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid_currentMovement.Location = new System.Drawing.Point(0, 85);
             this.grid_currentMovement.MainView = this.gridView2;
             this.grid_currentMovement.Name = "grid_currentMovement";
-            this.grid_currentMovement.Size = new System.Drawing.Size(567, 710);
+            this.grid_currentMovement.Size = new System.Drawing.Size(676, 710);
             this.grid_currentMovement.TabIndex = 3;
             this.grid_currentMovement.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -649,7 +682,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Datum";
+            this.gridColumn1.Caption = "Date";
             this.gridColumn1.FieldName = "HARK_TARH";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -658,7 +691,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Dokumentnummer";
+            this.gridColumn2.Caption = "Document Number";
             this.gridColumn2.FieldName = "BELGE_NO";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -667,7 +700,7 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Fälligkeitsdatum";
+            this.gridColumn3.Caption = "Delivery Date";
             this.gridColumn3.FieldName = "VADE_TARIHI";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -676,7 +709,7 @@
             // 
             // gridColumn4
             // 
-            this.gridColumn4.Caption = "Aussage";
+            this.gridColumn4.Caption = "Description";
             this.gridColumn4.FieldName = "ACIKLAMA";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
@@ -685,7 +718,7 @@
             // 
             // gridColumn5
             // 
-            this.gridColumn5.Caption = "Schulden";
+            this.gridColumn5.Caption = "Debt";
             this.gridColumn5.DisplayFormat.FormatString = "#,##0.00";
             this.gridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn5.FieldName = "CARI_BORC";
@@ -696,7 +729,7 @@
             // 
             // gridColumn6
             // 
-            this.gridColumn6.Caption = "Forderungen";
+            this.gridColumn6.Caption = "Receivable";
             this.gridColumn6.DisplayFormat.FormatString = "#,##0.00";
             this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn6.FieldName = "CARI_ALCK";
@@ -707,7 +740,7 @@
             // 
             // gridColumn7
             // 
-            this.gridColumn7.Caption = "Saldobetrag";
+            this.gridColumn7.Caption = "Balance Amount";
             this.gridColumn7.DisplayFormat.FormatString = "#,##0.00";
             this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn7.FieldName = "CARI_BAKY";
@@ -734,7 +767,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(567, 85);
+            this.panelControl1.Size = new System.Drawing.Size(676, 85);
             this.panelControl1.TabIndex = 2;
             // 
             // btn_deleteMOVE
@@ -743,9 +776,9 @@
             this.btn_deleteMOVE.Appearance.Options.UseFont = true;
             this.btn_deleteMOVE.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_deleteMOVE.ImageOptions.Image")));
             this.btn_deleteMOVE.ImageOptions.ImageIndex = 3;
-            this.btn_deleteMOVE.Location = new System.Drawing.Point(373, 52);
+            this.btn_deleteMOVE.Location = new System.Drawing.Point(357, 53);
             this.btn_deleteMOVE.Name = "btn_deleteMOVE";
-            this.btn_deleteMOVE.Size = new System.Drawing.Size(29, 29);
+            this.btn_deleteMOVE.Size = new System.Drawing.Size(29, 26);
             this.btn_deleteMOVE.TabIndex = 26;
             this.btn_deleteMOVE.Click += new System.EventHandler(this.btn_deleteMOVE_Click);
             // 
@@ -754,25 +787,25 @@
             this.btn_refreshMOVE.Appearance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
             this.btn_refreshMOVE.Appearance.Options.UseFont = true;
             this.btn_refreshMOVE.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_refreshMOVE.ImageOptions.Image")));
-            this.btn_refreshMOVE.Location = new System.Drawing.Point(404, 52);
+            this.btn_refreshMOVE.Location = new System.Drawing.Point(388, 53);
             this.btn_refreshMOVE.Name = "btn_refreshMOVE";
-            this.btn_refreshMOVE.Size = new System.Drawing.Size(29, 29);
+            this.btn_refreshMOVE.Size = new System.Drawing.Size(29, 26);
             this.btn_refreshMOVE.TabIndex = 27;
             this.btn_refreshMOVE.Click += new System.EventHandler(this.btn_refreshMOVE_Click);
             // 
             // btn_addMOVE
             // 
             this.btn_addMOVE.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_addMOVE.ImageOptions.Image")));
-            this.btn_addMOVE.Location = new System.Drawing.Point(342, 52);
+            this.btn_addMOVE.Location = new System.Drawing.Point(326, 53);
             this.btn_addMOVE.Name = "btn_addMOVE";
-            this.btn_addMOVE.Size = new System.Drawing.Size(29, 29);
+            this.btn_addMOVE.Size = new System.Drawing.Size(29, 26);
             this.btn_addMOVE.TabIndex = 25;
             this.btn_addMOVE.TabStop = false;
             this.btn_addMOVE.Click += new System.EventHandler(this.btn_addMOVE_Click);
             // 
             // tb_amountMOVE
             // 
-            this.tb_amountMOVE.Location = new System.Drawing.Point(197, 53);
+            this.tb_amountMOVE.Location = new System.Drawing.Point(181, 53);
             this.tb_amountMOVE.Name = "tb_amountMOVE";
             this.tb_amountMOVE.Properties.Appearance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_amountMOVE.Properties.Appearance.Options.UseFont = true;
@@ -796,9 +829,9 @@
             this.rg_amounttypeMOVE.Properties.Appearance.Options.UseFont = true;
             this.rg_amounttypeMOVE.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.rg_amounttypeMOVE.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Schulden"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Forderungen")});
-            this.rg_amounttypeMOVE.Size = new System.Drawing.Size(191, 26);
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Debt"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Receivable")});
+            this.rg_amounttypeMOVE.Size = new System.Drawing.Size(173, 26);
             this.rg_amounttypeMOVE.TabIndex = 23;
             this.rg_amounttypeMOVE.Leave += new System.EventHandler(this.rg_amounttypeMOVE_SelectedIndexChanged);
             // 
@@ -808,9 +841,9 @@
             this.label14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label14.Location = new System.Drawing.Point(413, 6);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(55, 13);
+            this.label14.Size = new System.Drawing.Size(71, 13);
             this.label14.TabIndex = 211;
-            this.label14.Text = "Aussage";
+            this.label14.Text = "Description";
             // 
             // label13
             // 
@@ -818,9 +851,9 @@
             this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label13.Location = new System.Drawing.Point(281, 6);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(101, 13);
+            this.label13.Size = new System.Drawing.Size(84, 13);
             this.label13.TabIndex = 210;
-            this.label13.Text = "Fälligkeitsdatum";
+            this.label13.Text = "Delivery Date";
             // 
             // label11
             // 
@@ -828,9 +861,9 @@
             this.label11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label11.Location = new System.Drawing.Point(138, 6);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(114, 13);
+            this.label11.Size = new System.Drawing.Size(112, 13);
             this.label11.TabIndex = 209;
-            this.label11.Text = "Dokumentnummer";
+            this.label11.Text = "Document Number";
             // 
             // label10
             // 
@@ -838,9 +871,9 @@
             this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label10.Location = new System.Drawing.Point(5, 6);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 13);
+            this.label10.Size = new System.Drawing.Size(34, 13);
             this.label10.TabIndex = 208;
-            this.label10.Text = "Datum";
+            this.label10.Text = "Date";
             // 
             // tb_descriptionMOVE
             // 
@@ -850,7 +883,7 @@
             this.tb_descriptionMOVE.Properties.Appearance.Options.UseFont = true;
             this.tb_descriptionMOVE.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
             this.tb_descriptionMOVE.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tb_descriptionMOVE.Size = new System.Drawing.Size(305, 26);
+            this.tb_descriptionMOVE.Size = new System.Drawing.Size(253, 26);
             this.tb_descriptionMOVE.TabIndex = 22;
             this.tb_descriptionMOVE.Tag = "CurrentTable Kod";
             this.tb_descriptionMOVE.Leave += new System.EventHandler(this.tb_descriptionMOVE_Leave);
@@ -900,33 +933,21 @@
             this.dt_dateMOVE.TabIndex = 19;
             this.dt_dateMOVE.EditValueChanged += new System.EventHandler(this.dt_dateMOVE_EditValueChanged);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendExcelToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(146, 26);
-            // 
-            // sendExcelToolStripMenuItem
-            // 
-            this.sendExcelToolStripMenuItem.Name = "sendExcelToolStripMenuItem";
-            this.sendExcelToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.sendExcelToolStripMenuItem.Text = "Send As Excel";
-            // 
             // Form_Current
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1304, 823);
+            this.ClientSize = new System.Drawing.Size(1413, 823);
             this.Controls.Add(this.splitContainerControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Current";
-            this.Text = "Kunde";
+            this.Text = "Current Account";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_Current_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grid_current)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_caribilgi)).EndInit();
             this.pnl_caribilgi.ResumeLayout(false);
@@ -963,7 +984,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_documentNoMOVE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_dateMOVE.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_dateMOVE.Properties)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1033,5 +1053,6 @@
         private DevExpress.XtraEditors.DateEdit dt_maturityDatemMOVE;
         private DevExpress.XtraEditors.TextEdit tb_documentNoMOVE;
         private DevExpress.XtraEditors.DateEdit dt_dateMOVE;
+        private System.Windows.Forms.ToolStripMenuItem sendAsExcelForCurrentToolStripMenuItem;
     }
 }

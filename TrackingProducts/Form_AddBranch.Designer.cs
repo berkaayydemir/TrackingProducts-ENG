@@ -76,7 +76,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Rang";
+            this.gridColumn1.Caption = "Order";
             this.gridColumn1.FieldName = "ID";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -85,7 +85,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Zweigcode";
+            this.gridColumn2.Caption = "Brach Code";
             this.gridColumn2.FieldName = "SUBE_KOD";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -94,7 +94,7 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Zweigname";
+            this.gridColumn3.Caption = "Branch Name";
             this.gridColumn3.FieldName = "SUBE_AD";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -131,18 +131,18 @@
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(9, 37);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(68, 18);
+            this.labelControl2.Size = new System.Drawing.Size(82, 18);
             this.labelControl2.TabIndex = 32;
-            this.labelControl2.Text = "Zweigname";
+            this.labelControl2.Text = "Branch Name";
             // 
             // tb_BranchName
             // 
-            this.tb_BranchName.Location = new System.Drawing.Point(83, 34);
+            this.tb_BranchName.Location = new System.Drawing.Point(98, 34);
             this.tb_BranchName.Name = "tb_BranchName";
             this.tb_BranchName.Properties.Appearance.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tb_BranchName.Properties.Appearance.Options.UseFont = true;
             this.tb_BranchName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.tb_BranchName.Size = new System.Drawing.Size(165, 24);
+            this.tb_BranchName.Size = new System.Drawing.Size(151, 24);
             this.tb_BranchName.TabIndex = 2;
             this.tb_BranchName.Leave += new System.EventHandler(this.tb_BranchName_Leave);
             // 
@@ -185,18 +185,18 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(13, 9);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(64, 18);
+            this.labelControl1.Size = new System.Drawing.Size(78, 18);
             this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "Zweigcode";
+            this.labelControl1.Text = "Branch Code";
             // 
             // tb_branchCode
             // 
-            this.tb_branchCode.Location = new System.Drawing.Point(83, 6);
+            this.tb_branchCode.Location = new System.Drawing.Point(98, 6);
             this.tb_branchCode.Name = "tb_branchCode";
             this.tb_branchCode.Properties.Appearance.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tb_branchCode.Properties.Appearance.Options.UseFont = true;
             this.tb_branchCode.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003;
-            this.tb_branchCode.Size = new System.Drawing.Size(165, 24);
+            this.tb_branchCode.Size = new System.Drawing.Size(151, 24);
             this.tb_branchCode.TabIndex = 1;
             this.tb_branchCode.Leave += new System.EventHandler(this.tb_branchCode_Leave);
             // 
@@ -209,7 +209,7 @@
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_AddBranch";
-            this.Text = "Zweig";
+            this.Text = "Branch ";
             this.Load += new System.EventHandler(this.Form_AddBranch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid_Branch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

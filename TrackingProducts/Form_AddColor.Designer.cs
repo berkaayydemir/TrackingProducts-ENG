@@ -101,9 +101,9 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(10, 17);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(62, 18);
+            this.labelControl1.Size = new System.Drawing.Size(70, 18);
             this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "Farbname";
+            this.labelControl1.Text = "Color Name";
             // 
             // tb_colorName
             // 
@@ -147,7 +147,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Rang";
+            this.gridColumn1.Caption = "Order";
             this.gridColumn1.FieldName = "ID";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -156,7 +156,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Farbname";
+            this.gridColumn2.Caption = "Color Name";
             this.gridColumn2.FieldName = "COLOR";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -172,7 +172,7 @@
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_AddColor";
-            this.Text = "Farb";
+            this.Text = "Color";
             this.Load += new System.EventHandler(this.Form_AddColor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);

@@ -92,6 +92,7 @@ namespace TrackingProducts
             _size = null;
 
             _quantity = 0; _price = 0; _amount = 0; _disocunt1 = 0; _discount2 = 0; _disocunt3 = 0; _discount4 = 0; _netPrice = 0; _netAmount = 0; _amountWithTax = 0; _grossAmount = 0; _discount = 0; _subtotal = 0; _kdv = 0; _grandTotal = 0; _correctionCheck = 0;
+            _inputOutputCode = "G";
 
             _gridControl = "Ok";
             tb_currentName.Text = _currentName;
@@ -498,7 +499,7 @@ namespace TrackingProducts
                 }
                 else
                 {
-                    grid_currentSearch.Location = new Point(1234, 35);
+                    grid_currentSearch.Location = new Point(6, 83);
                     grid_currentSearch.Size = new Size(650, 150);
                     grid_currentSearch.Visible = true;
 
@@ -554,7 +555,7 @@ namespace TrackingProducts
                 }
                 else
                 {
-                    grid_stockGuide.Location = new Point(6, 60);
+                    grid_stockGuide.Location = new Point(503, 83);
                     grid_stockGuide.Size = new Size(650, 150);
                     grid_stockGuide.Visible = true;
                     grid_stockGuide.Visible = true;
@@ -578,6 +579,11 @@ namespace TrackingProducts
                 DataTable Table = new DataTable();
                 DAL aaa = new DAL();
                 grid_stockGuide.Visible = false;
+
+                grid_stockGuide.Location = new Point(846, 83);
+                grid_stockGuide.Size = new Size(650, 150);
+                grid_stockGuide.Visible = true;
+                grid_stockGuide.Visible = true;
 
                 Table = aaa.fetchQuery("SELECT COUNT(STOK_KODU) AS SAY FROM VW_STOKBILGI WHERE STOK_KODU LIKE '" + _search1 + "%' AND VARYASYON_ACIKLAMA LIKE '%" + _search2 + "%'");
                 lineCount = Convert.ToInt32(Table.Rows[0]["SAY"].ToString());

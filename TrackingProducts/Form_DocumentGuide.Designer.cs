@@ -63,7 +63,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Dokumentnummer";
+            this.gridColumn1.Caption = "Document Number";
             this.gridColumn1.FieldName = "BELGE_NO";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
@@ -71,7 +71,7 @@
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "Datum";
+            this.gridColumn2.Caption = "Date";
             this.gridColumn2.FieldName = "TARIH";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
@@ -79,7 +79,7 @@
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Kundenname";
+            this.gridColumn3.Caption = "Current Name";
             this.gridColumn3.FieldName = "CARI_ISIM";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
@@ -93,7 +93,7 @@
             this.Controls.Add(this.grid_guide);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_DocumentGuide";
-            this.Text = "Buch";
+            this.Text = "Document Guide";
             this.Load += new System.EventHandler(this.Form_DocumentGuide_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid_guide)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

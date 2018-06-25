@@ -270,7 +270,7 @@
             // 
             // barSubItem3
             // 
-            this.barSubItem3.Caption = "Dossier";
+            this.barSubItem3.Caption = "File";
             this.barSubItem3.Id = 8;
             this.barSubItem3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barbtn_Customer),
@@ -281,35 +281,35 @@
             // 
             // barbtn_Customer
             // 
-            this.barbtn_Customer.Caption = "Kunde";
+            this.barbtn_Customer.Caption = "Current";
             this.barbtn_Customer.Id = 9;
             this.barbtn_Customer.Name = "barbtn_Customer";
             this.barbtn_Customer.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_Customers_ItemClick);
             // 
             // barbtn_Stock
             // 
-            this.barbtn_Stock.Caption = "Lager";
+            this.barbtn_Stock.Caption = "Stock";
             this.barbtn_Stock.Id = 10;
             this.barbtn_Stock.Name = "barbtn_Stock";
             this.barbtn_Stock.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_Stocks_ItemClick);
             // 
             // barbtn_Sales
             // 
-            this.barbtn_Sales.Caption = "Abrechnung";
+            this.barbtn_Sales.Caption = "Sales";
             this.barbtn_Sales.Id = 11;
             this.barbtn_Sales.Name = "barbtn_Sales";
             this.barbtn_Sales.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_Sales_ItemClick);
             // 
             // barbtn_Exit
             // 
-            this.barbtn_Exit.Caption = "Beenden";
+            this.barbtn_Exit.Caption = "Exit";
             this.barbtn_Exit.Id = 12;
             this.barbtn_Exit.Name = "barbtn_Exit";
             this.barbtn_Exit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_Exit_ItemClick);
             // 
             // barSb_Add
             // 
-            this.barSb_Add.Caption = "Addieren";
+            this.barSb_Add.Caption = "Add";
             this.barSb_Add.Id = 15;
             this.barSb_Add.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barbtn_Color),
@@ -319,21 +319,21 @@
             // 
             // barbtn_Color
             // 
-            this.barbtn_Color.Caption = "Farbe";
+            this.barbtn_Color.Caption = "Color";
             this.barbtn_Color.Id = 16;
             this.barbtn_Color.Name = "barbtn_Color";
             this.barbtn_Color.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_Color_ItemClick);
             // 
             // barbtn_Size
             // 
-            this.barbtn_Size.Caption = "Größe";
+            this.barbtn_Size.Caption = "Size";
             this.barbtn_Size.Id = 17;
             this.barbtn_Size.Name = "barbtn_Size";
             this.barbtn_Size.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bar_btnSize_ItemClick);
             // 
             // barbtn_branch
             // 
-            this.barbtn_branch.Caption = "Zweig";
+            this.barbtn_branch.Caption = "Branch";
             this.barbtn_branch.Id = 23;
             this.barbtn_branch.Name = "barbtn_branch";
             this.barbtn_branch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_branch_ItemClick);
@@ -349,21 +349,21 @@
             // 
             // barbtn_currentTransactionReport
             // 
-            this.barbtn_currentTransactionReport.Caption = "Kunde Transaktions Bericht";
+            this.barbtn_currentTransactionReport.Caption = "Current Transaction Report";
             this.barbtn_currentTransactionReport.Id = 21;
             this.barbtn_currentTransactionReport.Name = "barbtn_currentTransactionReport";
             this.barbtn_currentTransactionReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_currentTransactionReport_ItemClick);
             // 
             // barbtn_StockTransactionReport
             // 
-            this.barbtn_StockTransactionReport.Caption = "Bestands Detail Bericht";
+            this.barbtn_StockTransactionReport.Caption = "Stock Detail Report";
             this.barbtn_StockTransactionReport.Id = 22;
             this.barbtn_StockTransactionReport.Name = "barbtn_StockTransactionReport";
             this.barbtn_StockTransactionReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_StockTransactionReport_ItemClick);
             // 
             // barbtn_Help
             // 
-            this.barbtn_Help.Caption = "Über";
+            this.barbtn_Help.Caption = "About";
             this.barbtn_Help.Id = 20;
             this.barbtn_Help.Name = "barbtn_Help";
             this.barbtn_Help.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtn_Help_ItemClick);
@@ -500,7 +500,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "FormMain";
-            this.Text = "Startseite";
+            this.Text = "Main Page";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tb_database.Properties)).EndInit();

@@ -38,7 +38,7 @@
             this.ClientSize = new System.Drawing.Size(271, 384);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_About";
-            this.Text = "Über";
+            this.Text = "About";
             this.ResumeLayout(false);
 
         }

@@ -15,15 +15,344 @@ namespace TrackingProducts
 {
     public partial class Form_Stocks : DevExpress.XtraEditors.XtraForm
     {
-        GeneralClasses General = new GeneralClasses();
+        GeneralClasses _general = new GeneralClasses();
         DAL Data = new DAL();
         DataTable _stockTable = new DataTable();
+        DataTable _stocksMovement = new DataTable();
 
         string _search1, _search2, _stockCode, _stockName, _storeCode, _description, _code1, _groupCode, _r1, _r2, _r3, _r4, _r5, _r6, _r7, _r8, _r9, _r10, _b1, _b2, _b3, _b4, _b5, _b6, _b7, _b8, _b9, _b10, _groupCode2, _k1, _k2, _k3, _k4, _k5, _imagePath;
+
+        public string _branchCode, _color, _size;
+        public string _gckod, _typeMove;
+        private DateTime trh;
+        private double _zeroVariable = 0;
+        public double _entryquantity,_price;
+        public int _oneVariable;
+
+        private string _stokCodeMove;
+        private int _variationMove;
+
+
+        private void dt_date_EditValueChanged(object sender, EventArgs e)
+        {
+            _date = Convert.ToDateTime(dt_date.EditValue);
+            dt_date.Text = _date.ToShortDateString();
+        }
+
+        private void tb_price_Leave(object sender, EventArgs e)
+        {
+            _price = Convert.ToDouble(tb_price.Text);
+        }
+
+        private void tb_entryQuantity_Leave(object sender, EventArgs e)
+        {
+            _entryquantity = Convert.ToDouble(tb_entryQuantity.Text);
+        }
+
+        private void btn_itemRefresh_Click(object sender, EventArgs e)
+        {
+            movementRefresh();
+            //_stocksMovement.Clear();
+        }
+
+        private void btn_deleteMOVE_Click(object sender, EventArgs e)
+        {
+            Data.commandQuery("DELETE FROM TBL_STOKHAREKET WHERE STOK_KODU = '" + _stockCode + "' AND VARYASYON_KODU = " + _variation + " AND ID ='"+_id+"' ");
+            movementRefresh();
+            _stocksMovement.Clear();
+            _stocksMovement =
+                _stocksMovement = Data.fetchQuery("SELECT *,dbo.FNC_STOK_YURUYEN_BAKIYE(ID,STOK_KODU,SUBE_KOD,'E') AS BAKIYE FROM TBL_STOKHAREKET WHERE STOK_KODU = '" + _stockCode + "' AND VARYASYON_KODU='" + _variation + "'");
+            grid_StockMotion.DataSource = _stocksMovement;
+
+            
+            //xtraTabControl1.Visible = false;
+            //MessageBox.Show(@"Erfolgreich gelöscht.");
+        }
+
+        private void grid_StockMotion_DoubleClick(object sender, EventArgs e)
+        {
+            DataRow dr1 = null;
+            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo
+                hi = gridView2.CalcHitInfo((grid_StockMotion as Control).PointToClient(Control.MousePosition));
+
+            if (hi.RowHandle >= 0) dr1 = gridView2.GetDataRow(hi.RowHandle);
+            else if (gridView2.FocusedRowHandle >= 0) dr1 = gridView2.GetDataRow(gridView2.FocusedRowHandle);
+            else dr1 = null;
+
+            if (dr1 != null)
+            {
+                _id = Convert.ToInt32(dr1["ID"]);
+                _typeMove = dr1["HAR_TUR"].ToString();
+            }
+
+            FetchDataMove(_stockCode, _variation, _id);
+        }
+
+        private void tb_desciptionMove_Leave(object sender, EventArgs e)
+        {
+            _description = tb_desciptionMove.Text;
+        }
+
+        private void sendenSieExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+
+            save.FileName = "Kunde Transaktion Report(" + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + ")";
+            save.Filter = "Excel-Arbeitsmappe |*.xls";
+            save.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (save.ShowDialog() == DialogResult.OK) //Pencerede kayıt düğmesine basıldıysa
+            {
+                grid_StockMotion.ExportToXls(save.FileName);
+            }
+
+            if (MessageBox.Show("Öffnen Sie die exportierte Datei?", "Excel-Datei", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Kaydedilen Excel Dosyasını açar.
+                System.Diagnostics.Process.Start(save.FileName);
+            }
+        }
+
+        private void sendAsExcelForStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+
+            save.FileName = "Kunden Transaktion Reporter(" + DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year + ")";
+            save.Filter = "Excel-Arbeitsmappe |*.xls";
+            save.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if (save.ShowDialog() == DialogResult.OK) //Pencerede kayıt düğmesine basıldıysa
+            {
+                grid_stockList.ExportToXls(save.FileName);
+            }
+
+            if (MessageBox.Show("Öffnen Sie die exportierte Datei?", "Excel-Datei", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //Kaydedilen Excel Dosyasını açar.
+                System.Diagnostics.Process.Start(save.FileName);
+            }
+        }
+
+        public void FetchDataMove(string sk, int vr, int id)
+        {
+            DataTable _stockTable = new DataTable();
+
+            _stockTable = Data.fetchQuery("SELECT * FROM TBL_STOKHAREKET WHERE STOK_KODU = '" + sk + "' AND VARYASYON_KODU = '" + vr + "' AND ID = '" + id + "'");
+
+            _branchCode = _stockTable.Rows[0]["SUBE_KOD"].ToString();
+            _color = _stockTable.Rows[0]["COLOR"].ToString();
+            _size = _stockTable.Rows[0]["SIZE"].ToString();
+            _entryquantity = Convert.ToDouble(_stockTable.Rows[0]["MIKTAR"].ToString());
+            _price = Convert.ToDouble(_stockTable.Rows[0]["NET_FIYAT"].ToString());
+            trh = Convert.ToDateTime(_stockTable.Rows[0]["TARIH"].ToString());
+            _gckod = _stockTable.Rows[0]["GC_KOD"].ToString();
+            _description = _stockTable.Rows[0]["ACIKLAMA"].ToString();
+
+            if (_gckod == "G")
+            {
+                radioGroup1.SelectedIndex = 0;
+                _gckod = "G";
+            }
+            else
+            {
+                radioGroup1.SelectedIndex = 1;
+                _gckod = "C";
+            }
+
+            cb_branch.Text = _branchCode;
+            cb_color.Text = _color;
+            cb_size.Text = _size;
+            tb_entryQuantity.Text = _entryquantity.ToString();
+            tb_price.Text = _price.ToString();
+            dt_date.Text = _date.ToShortDateString();
+            tb_desciptionMove.Text = _description;
+        }
+
+
+
+        private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (radioGroup1.SelectedIndex == 0)
+            {
+                _gckod = "G";
+            }
+            else
+            {
+                _gckod = "C";
+            }
+        }
+
+        private void btn_addItem_Click(object sender, EventArgs e)
+        {
+            _stocksMovement.Clear();
+            Data.commandQuery("INSERT INTO [dbo].[TBL_STOKHAREKET](" +
+                              "[STOK_KODU]," +
+                              "[VARYASYON_KODU]," +
+                              "[GC_KOD]," +
+                              "[TARIH]," +
+                              "[TES_TARIH]" +
+                              ",[FTIRSIP]" +
+                              ",[FISNO]" +
+                              ",[HAR_TUR]" +
+                              ",[SIPNO]" +
+                              ",[IRSNO]" +
+                              ",[ACIKLAMA]" +
+                              ",[CARI_KOD]" +
+                              ",[SUBE_KOD]" +
+                              ",[COLOR]" +
+                              ",[SIZE]" +
+                              ",[MIKTAR]" +
+                              ",[BRUT_FIYAT]" +
+                              ",[NET_FIYAT]" +
+                              ",[ISK1]" +
+                              ",[ISK2]" +
+                              ",[ISK3]" +
+                              ",[ISK4]" +
+                              ",[KDV_ORAN]" +
+                              ",[BELGE_TIPI]" +
+                              ",[SIRA]) " +
+                              "VALUES('" 
+                              + _stockCode + "','"
+                              + _variation + "','" 
+                              + _gckod + "','" 
+                              + _general.editDateFormat(trh, 0) + "','" 
+                              + _general.editDateFormat(trh, 0) + "'," +
+                              "'S'," +
+                              "'MANUELKAYIT'," +
+                              "'S'," +
+                              "NULL," +
+                              "NULL,'" 
+                              + _description + "'," +
+                              "'MANUELCARIKAYIT','" 
+                              + _branchCode + "','" 
+                              + _color + "','" 
+                              + _size + "'," 
+                              + _entryquantity + "," 
+                              + _price.ToString().Replace(",", ".") + "," 
+                              + _price.ToString().Replace(",", ".") + "," 
+                              + _zeroVariable.ToString().Replace(",", ".") + "," 
+                              + _zeroVariable.ToString().Replace(",", ".") + "," 
+                              + _zeroVariable.ToString().Replace(",", ".") + " ," 
+                              + _zeroVariable.ToString().Replace(",", ".") + "," 
+                              + _zeroVariable.ToString().Replace(",", ".") + "," +
+                              "'S'," 
+                              + _oneVariable.ToString() + ")");
+
+           
+
+            _stocksMovement = Data.fetchQuery("SELECT *,dbo.FNC_STOK_YURUYEN_BAKIYE(ID,STOK_KODU,SUBE_KOD,'E') AS BAKIYE FROM TBL_STOKHAREKET WHERE STOK_KODU = '" + _stockCode + "' AND VARYASYON_KODU='" + _variation + "'");
+            grid_StockMotion.DataSource = _stocksMovement;
+
+            movementRefresh();
+        }
+
+        public string _lbBrach, _lbColor, _lbSize;
+
+        private void cb_size_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _size = cb_size.Text;
+
+            try
+            {
+                DataTable _branchTable;
+                DataTable _branchControl;
+                int control = 0;
+
+                _branchControl =
+                    Data.fetchQuery("SELECT COUNT(SIZE) AS SAY FROM TBL_SIZE WHERE SIZE = '" + _size + "' ");
+                control = Convert.ToInt32(_branchControl.Rows[0]["SAY"].ToString());
+
+                if (control != 0)
+                {
+                    _branchTable = Data.fetchQuery("SELECT SIZE FROM TBL_SIZE WHERE SIZE = '" + _size + "' ");
+
+                    _lbSize = _branchTable.Rows[0]["SIZE"].ToString();
+                    lb_size.Text = _lbSize;
+                }
+                else
+                {
+                    lb_size.Text = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void cb_color_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _color = cb_color.Text;
+
+            try
+            {
+                DataTable _branchTable;
+                DataTable _branchControl;
+                int control = 0;
+
+                _branchControl = Data.fetchQuery("SELECT COUNT(COLOR) AS SAY FROM TBL_COLOR WHERE COLOR = '" + _color + "' ");
+                control = Convert.ToInt32(_branchControl.Rows[0]["SAY"].ToString());
+
+                if (control != 0)
+                {
+                    _branchTable = Data.fetchQuery("SELECT COLOR FROM TBL_COLOR WHERE COLOR = '" + _color + "' ");
+
+                    _lbColor = _branchTable.Rows[0]["COLOR"].ToString();
+                    lb_color.Text = _lbColor;
+                }
+                else
+                {
+                    lb_color.Text = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cb_branch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _branchCode = cb_branch.Text;
+            try
+            {
+                DataTable _branchTable;
+                DataTable _branchControl;
+                int control = 0;
+
+                _branchControl = Data.fetchQuery("SELECT COUNT(SUBE_KOD) AS SAY FROM TBL_SUBE WHERE SUBE_KOD = '" + _branchCode + "' ");
+                control = Convert.ToInt32(_branchControl.Rows[0]["SAY"].ToString());
+
+                if (control != 0)
+                {
+                    _branchTable = Data.fetchQuery("SELECT SUBE_AD FROM TBL_SUBE WHERE SUBE_KOD = '" + _branchCode + "' ");
+
+                    _lbBrach = _branchTable.Rows[0]["SUBE_AD"].ToString();
+                    lb_brachName.Text = _lbBrach;
+                }
+                else
+                {
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         DateTime _date;
 
         int _colorNumber, _variation, _id, _id2;
+
 
         public Form_Stocks()
         {
@@ -168,6 +497,42 @@ namespace TrackingProducts
             grid_stocks.DataSource = _stockTable;
             btn_imageadd.Enabled = false;
             btn_imageremove.Enabled = false;
+            xtraTabControl1.Visible = false;
+        }
+
+        public void movementRefresh()
+        {
+            _branchCode = null;
+            _color = null;
+            _size = null;
+            _gckod = null;
+            _description = null;
+            trh = DateTime.Now;
+            _zeroVariable = 0;
+            _oneVariable = 1;
+            _entryquantity = 0;
+            _price = 0;
+
+            tb_entryQuantity.Text = _entryquantity.ToString();
+            tb_desciptionMove.Text = _description;
+            cb_branch.Text = _branchCode;
+            cb_color.Text = _color;
+            cb_size.Text = _size;
+
+            lb_brachName.Text = null;
+            lb_color.Text = null;
+            lb_size.Text = null;
+
+            tb_entryQuantity.Text = _entryquantity.ToString();
+            tb_price.Text = _price.ToString();
+
+
+            trh = DateTime.Now;
+            dt_date.Text = trh.ToShortDateString();
+
+            //_stocksMovement.Clear();
+            //_stocksMovement = Data.fetchQuery("SELECT SUBE_KOD, COLOR, SIZE, MIKTAR,dbo.FNC_STOK_YURUYEN_BAKIYE(ID,STOK_KODU,SUBE_KOD,'E') AS BAKIYE FROM TBL_STOKHAREKET WHERE STOK_KODU = '" + _stockCode + "' AND VARYASYON_KODU='" + _variation + "'");
+            //grid_StockMotion.DataSource = _stocksMovement;
         }
 
         private void ImageRefresh()
@@ -191,71 +556,81 @@ namespace TrackingProducts
             DataTable StokBilgi = new DataTable();
             StokBilgi = Data.fetchQuery("SELECT * FROM VW_STOKBILGI WHERE STOK_KODU = '" + a + "' AND VARYASYON_KODU='" + b + "'");
 
-            _id = Convert.ToInt32(StokBilgi.Rows[0]["ID"]);
-            //id2 = Convert.ToInt32(StokBilgi.Rows[0]["ID2"]);
-            _stockName = StokBilgi.Rows[0]["VARYASYON_ACIKLAMA"].ToString();
-            _variation = Convert.ToInt32(StokBilgi.Rows[0]["VARYASYON_KODU"]);
-            _description = StokBilgi.Rows[0]["ACIKLAMA"].ToString();
-            _code1 = StokBilgi.Rows[0]["KOD_1"].ToString();
-            _groupCode = StokBilgi.Rows[0]["GRUP_KODU"].ToString();
-            _storeCode = StokBilgi.Rows[0]["DEPO_KODU"].ToString();
-            _colorNumber = Convert.ToInt16(StokBilgi.Rows[0]["RENK_ADET"]);
-            _r1 = StokBilgi.Rows[0]["RENK1"].ToString();
-            _b1 = StokBilgi.Rows[0]["BOBIN1"].ToString();
-            _r2 = StokBilgi.Rows[0]["RENK2"].ToString();
-            _b2 = StokBilgi.Rows[0]["BOBIN2"].ToString();
-            _r3 = StokBilgi.Rows[0]["RENK3"].ToString();
-            _b3 = StokBilgi.Rows[0]["BOBIN3"].ToString();
-            _r4 = StokBilgi.Rows[0]["RENK4"].ToString();
-            _b4 = StokBilgi.Rows[0]["BOBIN4"].ToString();
-            _r5 = StokBilgi.Rows[0]["RENK5"].ToString();
-            _b5 = StokBilgi.Rows[0]["BOBIN5"].ToString();
-            _r6 = StokBilgi.Rows[0]["RENK6"].ToString();
-            _b6 = StokBilgi.Rows[0]["BOBIN6"].ToString();
-            _r7 = StokBilgi.Rows[0]["RENK7"].ToString();
-            _b7 = StokBilgi.Rows[0]["BOBIN7"].ToString();
-            _r8 = StokBilgi.Rows[0]["RENK8"].ToString();
-            _b8 = StokBilgi.Rows[0]["BOBIN8"].ToString();
-            _r9 = StokBilgi.Rows[0]["RENK9"].ToString();
-            _b9 = StokBilgi.Rows[0]["BOBIN9"].ToString();
-            _r10 = StokBilgi.Rows[0]["RENK10"].ToString();
-            _b10 = StokBilgi.Rows[0]["BOBIN10"].ToString();
-            _groupCode2 = StokBilgi.Rows[0]["GRUP_KODU"].ToString();
-            _k1 = StokBilgi.Rows[0]["KOD1"].ToString();
-            _k2 = StokBilgi.Rows[0]["KOD2"].ToString();
-            _k3 = StokBilgi.Rows[0]["KOD3"].ToString();
-            _k4 = StokBilgi.Rows[0]["KOD4"].ToString();
-            _k5 = StokBilgi.Rows[0]["KOD5"].ToString();
+            if (StokBilgi.Rows.Count != 0)
+            {
+                _id = Convert.ToInt32(StokBilgi.Rows[0]["ID"]);
+                //id2 = Convert.ToInt32(StokBilgi.Rows[0]["ID2"]);
+                _stockName = StokBilgi.Rows[0]["VARYASYON_ACIKLAMA"].ToString();
+                _variation = Convert.ToInt32(StokBilgi.Rows[0]["VARYASYON_KODU"]);
+                _description = StokBilgi.Rows[0]["ACIKLAMA"].ToString();
+                _code1 = StokBilgi.Rows[0]["KOD_1"].ToString();
+                _groupCode = StokBilgi.Rows[0]["GRUP_KODU"].ToString();
+                _storeCode = StokBilgi.Rows[0]["DEPO_KODU"].ToString();
+                _colorNumber = Convert.ToInt16(StokBilgi.Rows[0]["RENK_ADET"]);
+                _r1 = StokBilgi.Rows[0]["RENK1"].ToString();
+                _b1 = StokBilgi.Rows[0]["BOBIN1"].ToString();
+                _r2 = StokBilgi.Rows[0]["RENK2"].ToString();
+                _b2 = StokBilgi.Rows[0]["BOBIN2"].ToString();
+                _r3 = StokBilgi.Rows[0]["RENK3"].ToString();
+                _b3 = StokBilgi.Rows[0]["BOBIN3"].ToString();
+                _r4 = StokBilgi.Rows[0]["RENK4"].ToString();
+                _b4 = StokBilgi.Rows[0]["BOBIN4"].ToString();
+                _r5 = StokBilgi.Rows[0]["RENK5"].ToString();
+                _b5 = StokBilgi.Rows[0]["BOBIN5"].ToString();
+                _r6 = StokBilgi.Rows[0]["RENK6"].ToString();
+                _b6 = StokBilgi.Rows[0]["BOBIN6"].ToString();
+                _r7 = StokBilgi.Rows[0]["RENK7"].ToString();
+                _b7 = StokBilgi.Rows[0]["BOBIN7"].ToString();
+                _r8 = StokBilgi.Rows[0]["RENK8"].ToString();
+                _b8 = StokBilgi.Rows[0]["BOBIN8"].ToString();
+                _r9 = StokBilgi.Rows[0]["RENK9"].ToString();
+                _b9 = StokBilgi.Rows[0]["BOBIN9"].ToString();
+                _r10 = StokBilgi.Rows[0]["RENK10"].ToString();
+                _b10 = StokBilgi.Rows[0]["BOBIN10"].ToString();
+                _groupCode2 = StokBilgi.Rows[0]["GRUP_KODU"].ToString();
+                _k1 = StokBilgi.Rows[0]["KOD1"].ToString();
+                _k2 = StokBilgi.Rows[0]["KOD2"].ToString();
+                _k3 = StokBilgi.Rows[0]["KOD3"].ToString();
+                _k4 = StokBilgi.Rows[0]["KOD4"].ToString();
+                _k5 = StokBilgi.Rows[0]["KOD5"].ToString();
 
-            tb_stockcode.Text = _stockCode;
-            tb_stockName.Text = _stockName;
-            tb_code1.Text = _code1;
-            tb_variationCode.Text = _variation.ToString();
-            tb_groupCode.Text = _groupCode;
-            tb_description.Text = _description;
-            tb_storeCode.Text = _storeCode;
-            //cb_renkadet.Text = colorNumber.ToString();
-            tb_renk1.Text = _r1;
-            tb_bobin1.Text = _b1;
-            tb_renk2.Text = _r2;
-            tb_bobin2.Text = _b2;
-            tb_renk3.Text = _r3;
-            tb_bobin3.Text = _b3;
-            tb_renk4.Text = _r4;
-            tb_bobin4.Text = _b4;
-            tb_renk5.Text = _r5;
-            tb_bobin5.Text = _b5;
-            tb_renk6.Text = _r6;
-            tb_bobin6.Text = _b6;
-            tb_renk7.Text = _r7;
-            tb_bobin7.Text = _b7;
-            tb_renk8.Text = _r8;
-            tb_bobin8.Text = _b8;
-            tb_renk9.Text = _r9;
-            tb_bobin9.Text = _b9;
-            tb_renk10.Text = _r10;
-            tb_bobin10.Text = _b10;
+                tb_stockcode.Text = _stockCode;
+                tb_stockName.Text = _stockName;
+                tb_code1.Text = _code1;
+                tb_variationCode.Text = _variation.ToString();
+                tb_groupCode.Text = _groupCode;
+                tb_description.Text = _description;
+                tb_storeCode.Text = _storeCode;
+                //cb_renkadet.Text = colorNumber.ToString();
+                tb_renk1.Text = _r1;
+                tb_bobin1.Text = _b1;
+                tb_renk2.Text = _r2;
+                tb_bobin2.Text = _b2;
+                tb_renk3.Text = _r3;
+                tb_bobin3.Text = _b3;
+                tb_renk4.Text = _r4;
+                tb_bobin4.Text = _b4;
+                tb_renk5.Text = _r5;
+                tb_bobin5.Text = _b5;
+                tb_renk6.Text = _r6;
+                tb_bobin6.Text = _b6;
+                tb_renk7.Text = _r7;
+                tb_bobin7.Text = _b7;
+                tb_renk8.Text = _r8;
+                tb_bobin8.Text = _b8;
+                tb_renk9.Text = _r9;
+                tb_bobin9.Text = _b9;
+                tb_renk10.Text = _r10;
+                tb_bobin10.Text = _b10;
+            }
+            else
+            {
+                MessageBox.Show("Error!");
+            }
 
+            _stocksMovement.Clear();
+            _stocksMovement = Data.fetchQuery("SELECT *,dbo.FNC_STOK_YURUYEN_BAKIYE(ID,STOK_KODU,SUBE_KOD,'E') AS BAKIYE FROM TBL_STOKHAREKET WHERE STOK_KODU = '" + a + "' AND VARYASYON_KODU='" + b + "' ");
+            grid_StockMotion.DataSource = _stocksMovement;
 
             GetImage(_stockCode, _variation);
 
@@ -345,6 +720,36 @@ namespace TrackingProducts
             return s;
         }
 
+        public void FetchDataToCombobox()
+        {
+            DataTable _branchTable;
+            DataTable _colorTable;
+            DataTable _sizeTable;
+
+            _branchTable = Data.fetchQuery("SELECT * FROM TBL_SUBE");
+            _colorTable = Data.fetchQuery("SELECT * FROM TBL_COLOR");
+            _sizeTable = Data.fetchQuery("SELECT * FROM TBL_SIZE");
+
+            cb_branch.Properties.Items.Clear();
+            cb_color.Properties.Items.Clear();
+            cb_size.Properties.Items.Clear();
+
+            for (int i = 0; i < _colorTable.Rows.Count; i++)
+            {
+                cb_color.Properties.Items.Add(_colorTable.Rows[i]["COLOR"].ToString());
+            }
+
+            for (int i = 0; i < _sizeTable.Rows.Count; i++)
+            {
+                cb_size.Properties.Items.Add(_sizeTable.Rows[i]["SIZE"].ToString());
+            }
+
+            for (int i = 0; i < _branchTable.Rows.Count; i++)
+            {
+                cb_branch.Properties.Items.Add(_branchTable.Rows[i]["SUBE_KOD"].ToString());
+            }
+        }
+
         private void Form_Stocks_Load(object sender, EventArgs e)
         {
             _colorNumber = 0;
@@ -354,11 +759,16 @@ namespace TrackingProducts
             tb_variationCode.Text = _variation.ToString();
             _colorNumber = 0;
             //cb_renkadet.Text = colorNumber.ToString();
-
+            radioGroup1.SelectedIndex = 0;
+            _gckod = "G";
+            _zeroVariable = 0;
+            _oneVariable = 1;
 
             _stockTable.Clear();
             _stockTable = Data.fetchQuery("SELECT * FROM VW_STOKBILGI");
             grid_stocks.DataSource = _stockTable;
+
+            FetchDataToCombobox();
         }
 
         private void tb_stockcode_Leave(object sender, EventArgs e)
@@ -500,6 +910,7 @@ namespace TrackingProducts
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             Refresh_();
+            movementRefresh();
         }
 
         private void btn_imageadd_Click(object sender, EventArgs e)
@@ -524,7 +935,7 @@ namespace TrackingProducts
 
                 img = br.ReadBytes((int)fs.Length);
 
-                string cmd = "IF EXISTS (SELECT STOK_KODU FROM VW_STOKBILGI WHERE STOK_KODU = '" + General.changeCharacter(_stockCode) + "' AND VARYASYON_KODU = '" + _variation + "' ) INSERT INTO TBL_STOKRESIM (STOK_KODU,VARYASYON_KODU,IMAGE1) VALUES('" + _stockCode + "','" + _variation + "',  @img)";
+                string cmd = "IF EXISTS (SELECT STOK_KODU FROM VW_STOKBILGI WHERE STOK_KODU = '" + _general.changeCharacter(_stockCode) + "' AND VARYASYON_KODU = '" + _variation + "' ) INSERT INTO TBL_STOKRESIM (STOK_KODU,VARYASYON_KODU,IMAGE1) VALUES('" + _stockCode + "','" + _variation + "',  @img)";
 
                 if (SqlCon.State != ConnectionState.Open)
                     SqlCon.Open();
@@ -594,7 +1005,9 @@ namespace TrackingProducts
             if (dr1 != null)
             {
                 _stockCode = dr1["STOK_KODU"].ToString();
+                _stokCodeMove = _stockCode;
                 _variation = Convert.ToInt32(dr1["VARYASYON_KODU"]);
+                _variationMove = _variation;
                 _id = Convert.ToInt32(dr1["ID"]);
                 // id2 = Convert.ToInt32(dr1["ID2"]); 
             }
@@ -605,6 +1018,7 @@ namespace TrackingProducts
             grid_stockList.Visible = false;
             btn_imageadd.Enabled = true;
             btn_imageremove.Enabled = true;
+            xtraTabControl1.Visible = true;
         }
 
         private void grid_stockList_DoubleClick(object sender, EventArgs e)
